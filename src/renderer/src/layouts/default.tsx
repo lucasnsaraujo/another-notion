@@ -1,19 +1,18 @@
-import { Routes } from '../Routes'
-import { Header } from '../components/Header'
-import { Sidebar } from '../components/Sidebar'
+import * as Collapsible from "@radix-ui/react-collapsible";
+import { Header } from "../components/Header";
+import { Sidebar } from "../components/Sidebar";
+import { Outlet } from "react-router-dom";
 
-function App(): JSX.Element {
+export function Default() {
   return (
-    <>
+    <Collapsible.Root defaultOpen={true}>
       <div className="h-screen w-screen text-rotion-100 flex flex-row bg-rotion-900">
         <Sidebar />
         <div className="flex-1 flex-col flex max-h-screen">
           <Header />
-          <Routes />
+          <Outlet />
         </div>
       </div>
-    </>
-  )
+    </Collapsible.Root>
+  );
 }
-
-export default App
