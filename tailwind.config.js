@@ -1,4 +1,4 @@
-import plugin from 'tailwindcss/plugin'
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -26,6 +26,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     plugin(({ addUtilities }) => {
       addUtilities({
         '.region-drag': {

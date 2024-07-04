@@ -11,6 +11,8 @@ function createWindow(): void {
     show: false,
     backgroundColor: '#17141f',
     autoHideMenuBar: true,
+    minWidth: 750,
+    minHeight: 500,
     titleBarStyle: 'hiddenInset',
     trafficLightPosition: {
       x: 20,
