@@ -1,9 +1,18 @@
+import { Routes } from './Routes'
+import { Header } from './components/Header'
+import { Sidebar } from './components/Sidebar'
 import './styles/global.css'
 
 function App(): JSX.Element {
   return (
     <>
-      <h1 className="text-rotion-500">Hello World!</h1>
+      <div className="h-screen w-screen text-rotion-100 flex flex-row bg-rotion-900">
+        <Sidebar />
+        <div className="flex-1 flex-col flex max-h-screen">
+          <Header />
+          <Routes />
+        </div>
+      </div>
     </>
   )
 }
