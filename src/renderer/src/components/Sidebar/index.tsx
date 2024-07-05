@@ -12,9 +12,9 @@ export function Sidebar() {
   return (
     <>
       <Collapsible.Content className="bg-rotion-800 flex-shrink-0 border-r border-rotion-600 h-screen relative group data-[state=open]:animate-slideIn data-[state=closed]:animate-slideOut overflow-hidden">
-        <div className="flex flex-row">
+        <div className="flex flex-row items-center pr-3">
           <div
-            className={clsx("region-drag h-14 z-0", {
+            className={clsx("region-drag h-14 w-full", {
               block: isMacOS,
               hidden: !isMacOS,
             })}
@@ -22,7 +22,7 @@ export function Sidebar() {
           <Collapsible.Trigger
             asChild
             className={clsx(
-              "absolute z-10 p-0.5 h-5 w-5 right-4 text-rotion-200 hover:text-rotion-50 inline-flex items-center justify-center cursor-pointer",
+              "p-0.5 h-5 w-5 right-4 text-rotion-200 hover:text-rotion-50 inline-flex items-center justify-center cursor-pointer",
               {
                 "top-[1.125rem]": isMacOS,
                 "top-6": !isMacOS,
