@@ -11,6 +11,7 @@ export function Sidebar() {
   const isMacOS = process.platform === "darwin";
 
   const { data } = useQuery({
+    refetchOnWindowFocus: true,
     queryKey: ["documents"],
     queryFn: async () => {
       const response = await window.api.fetchDocuments();
