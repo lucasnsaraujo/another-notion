@@ -2,7 +2,6 @@ import { ipcMain } from "electron";
 import { IPC } from "../shared/constants/ipc";
 import { CreateDocumentResponse, DeleteDocumentRequest, Document, FetchAllDocumentsResponse, FetchDocumentRequest, FetchDocumentResponse, SaveDocumentRequest } from "../shared/types/ipc";
 import { store } from "./store";
-import { } from 'dot-prop'
 
 ipcMain.handle(IPC.DOCUMENTS.FETCH_ALL, async (): Promise<FetchAllDocumentsResponse> => {
     return {
