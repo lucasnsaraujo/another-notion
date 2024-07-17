@@ -1,13 +1,10 @@
 import { contextBridge } from 'electron'
-import { electronAPI } from '@electron-toolkit/preload'
-import { ElectronAPI } from '@electron-toolkit/preload'
 import { ipcRenderer } from 'electron/renderer'
 import { IPC } from '../shared/constants/ipc'
 import { CreateDocumentResponse, DeleteDocumentRequest, FetchAllDocumentsResponse, FetchDocumentRequest, FetchDocumentResponse, SaveDocumentRequest } from '../shared/types/ipc'
 
 declare global {
   export interface Window {
-    electron: ElectronAPI
     api: typeof api
   }
 }
@@ -30,19 +27,21 @@ const api = {
   deleteDocument(req: DeleteDocumentRequest): Promise<void> {
     return ipcRenderer.invoke(IPC.DOCUMENTS.DELETE, req)
   },
+  onNewDocumentRequest(callback: () => void) {
+    ipcRenderer.on(IPC.DOCUMENTS.NEW, callback)
+    return () => {
+      ipcRenderer.off(IPC.DOCUMENTS.NEW, callback)
+    }
+  },
 }
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
+
 if (process.contextIsolated) {
   try {
-    contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
   } catch (error) {
     console.error(error)
   }
 } else {
-  window.electron = electronAPI
   window.api = api
 }
